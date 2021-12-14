@@ -32,6 +32,7 @@ file owner 	- permission
 group owner
 other (public)
 
+
 RH124
 Special permission
 - sticky bit - owner can delete his/her
@@ -49,6 +50,23 @@ effective dir	    - 755 (rwxr-xr-x)
 
 Acl
 - mask = max permissions
+- named user - acl 
+- named group - acl
+- "default acl" - permission apply to dir
+  - inherit permissions new files/sub-directory
+
+getfacl
+setfacl
+
+chmod
+- user execute 
+
+chgrp
+- user execute
+
+chown
+- user cannot execute
+
 
 
 
