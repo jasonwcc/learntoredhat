@@ -83,9 +83,10 @@ Precedence
 
 setfacl -R -m u:peter:rx /dira/*
 
-conditional execute permissino
+conditional execute permissions
 - file -
 - dir x
+
 Network Services
 NTP
 DNS
@@ -101,4 +102,18 @@ LDAP
 
 MS DS (AD)
 - based on LDAP
-- relise DNS
+
+
+
+configure web server / db server /  NFS-server / autofs
+1. install packages
+# dnf -y install
+# rpm -ql httpd | grep ".*service"
+2. Start and Enable the Services
+# systemctl start --now httpd
+3. Enable the service on firewall
+# firewalld-cmd --permanent --add-service=http
+4. Enable SELinux
+# semanage fcontext -at httpd_sys_content_t \
+"/var/www/html(/.*)?"
+# semanage port -at http_port_t -p tcp 8800
