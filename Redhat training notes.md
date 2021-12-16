@@ -8,16 +8,15 @@ cd ~
 /home/student/script.sh
 
 3
-cd 
+cd
 sh script.sh
 
 
 scheduling
 Process 1 - 500ms (timeslicing)
-Process 2 - 450ms 
+Process 2 - 450ms
 Process 3
 
-Round Robin
 DNS
 LACP
 NIC TEAMING
@@ -36,12 +35,13 @@ other (public)
 RH124
 Special permission
 - sticky bit - owner can delete his/her
-- setuid - executable binary 
+- setuid - executable binary
 - setgid - set group ownership on subdir
 
 process owner
 umask 0023
-- control effective permission of newly created file/directory
+- control effective permission of
+newly created file/directory
 
 newly created files - 666 (rw-rw-rw-)
 newly created dir   - 777 (rwxrwxrwx)
@@ -49,17 +49,18 @@ effective file	    - 644 (rw-r--r--)
 effective dir	    - 755 (rwxr-xr-x)
 
 Acl
-- mask = max permissions
-- named user - acl 
+- mask = allowable max permissions
+- named user - acl
 - named group - acl
-- "default acl" - permission apply to dir
-  - inherit permissions new files/sub-directory
+- group owner - acl
+- "default acl" - permission apply to parent dir
+  - inherit default acl permissions new files/sub-directory
 
 getfacl
 setfacl
 
 chmod
-- user execute 
+- user execute
 
 chgrp
 - user execute
@@ -67,11 +68,37 @@ chgrp
 chown
 - user cannot execute
 
+base
+owner: jason : rwx
+group: sales : rx
+other: ---
 
+Acl
+user: peter :
+group: engineer :
+mask:
 
+Precedence
+- final result / effective permission
 
+setfacl -R -m u:peter:rx /dira/*
 
+conditional execute permissino
+- file -
+- dir x
+Network Services
+NTP
+DNS
+DHCP
+SMTP
 
+LDAP
+- centralize user/group
+- policies
+- profiles
+- rbac
+- hostname
 
-
-
+MS DS (AD)
+- based on LDAP
+- relise DNS
