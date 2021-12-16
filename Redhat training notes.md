@@ -83,29 +83,36 @@ Precedence
 
 setfacl -R -m u:peter:rx /dira/*
 
-conditional execute permissions
-- file -
-- dir x
+- conditional execute permissions
+```
+file -
+dir x
+```
 
-Network Services
+- Network Services :
+```
 NTP
 DNS
 DHCP
 SMTP
+```
 
-LDAP
-- centralize user/group
-- policies
-- profiles
-- rbac
-- hostname
+- LDAP
+```
+centralize user/group
+policies
+profiles
+rbac
+hostname
+```
 
-MS DS (AD)
-- based on LDAP
+- MS DS (AD)
+based on LDAP
 
 
 
-configure web server / db server /  NFS-server / autofs
+- Configure web server / db server /  NFS-server / autofs
+```
 1. install packages
 # dnf -y install
 # rpm -ql httpd | grep ".*service"
@@ -117,3 +124,4 @@ configure web server / db server /  NFS-server / autofs
 # semanage fcontext -at httpd_sys_content_t \
 "/var/www/html(/.*)?"
 # semanage port -at http_port_t -p tcp 8800
+```
