@@ -114,14 +114,24 @@ based on LDAP
 - Configure web server / db server /  NFS-server / autofs
 ```
 1. install packages
-# dnf -y install
+# dnf -y install httpd
 # rpm -ql httpd | grep ".*service"
 2. Start and Enable the Services
-# systemctl start --now httpd
+# systemctl start httpd
+# systemctl enable httpd
 3. Enable the service on firewall
-# firewalld-cmd --permanent --add-service=http
-4. Enable SELinux
+# firewalld-cmd --permanent  --add-service=http
+4. [optional] Enable SELinux
 # semanage fcontext -at httpd_sys_content_t \
 "/var/www/html(/.*)?"
 # semanage port -at http_port_t -p tcp 8800
 ```
+task
+1 - 0
+...
+10
+
+10-20
+
+performance-based
+210/300
