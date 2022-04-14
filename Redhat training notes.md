@@ -135,3 +135,45 @@ task
 
 performance-based
 210/300
+
+IaC
+puppet chef ansible terraform
+- orchestration framework
+- yaml,json,jinja2
+
+ansible-playbook aa.yaml
+- master node / Configure
+- managed nodes
+  - python
+
+
+general workloads
+- DB (Oracle / Mongo / Microsoft)
+- WEB (cgi, wscgi,...)
+- EMail
+- Messaging
+- SIEM / SOAR
+VM
+- SAP HANA
+
+VM
+- linux (cgroup, scheduler )
+containers = process
+- containerized workloads
+- DB (Mongo, mysql , oracle)
+- purpose built
+- redis in-memory
+- shared ,
+- cgroup
+-
+
+Containerfile Dockerfile
+- DO180
+
+
+podman rm WEB
+podman rmi web-image
+
+mkdir /home/user/dbfiles
+semanage fcontext -at "container_file_t" "/home/user/dbfiles(/.*)?"
+restoreconv -Rv /home/user/dbfiles/
