@@ -87,5 +87,148 @@ or
 # setfacl -x -d u:jason:rw- file/dir
 
 
+getboolean
+- current state:on/off
 
+semanage boolean -l
+- current/boot state: on/off
+
+
+Type of Disk (2.5" / 3.5")
+- SSD (flash - 1.8")
+  - SAS (24GB/s)
+  - NVMe
+- HDD /dev/hdX
+  - SAS
+    - 10k/15k rpm
+  - NL-SAS
+    - 5400 rpm - 7200 rpm
+  - IDE 
+
+SCSI
+- /dev/sdX
+NVMe
+- /dev/nvmeX
+
+Storage Array
+- NAS
+  - Ethernet / IP 
+  - CIFS / NFS
+- SAN
+  - FC / FCoE
+  - iSCSI 
+  - NVMeoFC
+- DAS
+
+access method by OS 
+- c : characters / sectors (512b)
+- b : block (4k/8k)
+
+Pseudo-based FS / Memory-based
+- accessed / managed by the kernel
+
+dump indicator    fsck-priority
+x                 y
+
+REDHAT
+- 1st --> 
+- 2nd --> /dev/sdb
+- 3rd --> /dev/sdc
+- 4th --> /dev/sdd
+
+
+PE size 4m
+What if i create a 100m LV?
+- 25 PE. Perfect
+What if i create a 110m LV?
+- 28 PE. LVM create 112m LV
+
+Standard LV (standalone
+Concatenated (RAID-0)
+- different number of PE on different PV
+- flexible of expanding
+- not protected
+
+Stripe set without parity (RAID-0)
+- has best performance
+- cannot expand
+- not protected
+
+Block Size 
+- configured on FS / mountpoint
+  mkfs 4kb / 8kb / 128k
+  - how large this FS can be created?
+  - smallest LV can be created?
+
+
+vs PE size
+- configured on VG 
+  vgcreate 4m / 8m / 16m / 128m
+  - how large this VG can be created?
+  - smallest LV can be created?
+
+RAID-10 
+- sw-based
+- hw-based (configured array controller)
+
+pvcreate
+pvs
+pvdisplay
+- PEs
+
+vgcreate
+vgs
+vgdisplay
+
+lvcreate
+- specify actual capacity / specify number of PE
+
+lvs
+lvdisplay
+
+pvmove
+- move PE from one PV to another PV
+
+- cannot move PV from one VG to 
+another VG
+
+/boot
+--> cannot be placed on LVM
+--> GRUB loader
+/
+/usr
+/etc
+
+Mapper
+FS --> LV --> PE --> PV
+
+Storage Efficiency
+1TB -- USD100
+- Compression
+  - Use CPU alot
+  - LZ4 algorithm (4kb)
+  - focus speed rather compression ratio
+  - about 500Mb/s per core
+  - app/data compressible friendly
+    - DB (80-85%), 
+    - Virtual-related(70-75%, 
+    - oil & gas (60%)
+    - user data)
+       dont use compression here
+       - office 2016 xlsx,pptx,docx)
+       - video / audio mp3 mp4 mkv avi
+
+- Deduplication
+  - Use RAM alot
+  - remove redundant content
+    - 4kb
 ```
+
+
+
+
+
+
+
+
+
