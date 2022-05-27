@@ -222,7 +222,232 @@ Storage Efficiency
   - Use RAM alot
   - remove redundant content
     - 4kb
+
+
+Dracut
+- create initramfs
+
+Initramfs
+- consists important executable binaries/libraries
+- RAM (performance)
+
+Root FS = /
+/usr/lib
+/usr/bin
+/usr/sbin
+
+/etc
+ 
+/var
+/tmp
+/home
+/root
+/boot
+
+
+runlevel --> milestone --> target
+
+Imperative language
+- scripting
+  - step 1 --> 2 --> 3
+vs
+Declaractive
+- declare the desired state
 ```
+1st-column 
+dump-level 
+- backup / old
+- lower number first 
+
+2nd-column
+fsck-check-level
+backup
+
+BaseOS-Stream
+- OS v8.1 --> v8.2
+- 
+
+AppStream
+- RunTime environment
+- Java v1.0 
+- Mysql v1.0 
+
+
+KickStart
+- automated installation network
+- dhcp / pxe-compliant NIC
+Solaris Jumpstart
+AIX NIS
+Windows SCOM
+- sysprep 
+
+Monolithic design
+- image
+  - db, email, ftp, www, python
+  - better performance (latency)
+  - better contract security 
+vs
+Micro-service
+- image1 -> function / process
+  - adaptability 
+  - scalability
+- processes hosted on different node
+  - network latency risk
+  - security risk
+
+Container Image registry
+- quay.io
+- docker.io
+- Google CR
+- Azure CR
+- redhat.io
+  
+Container processes
+- are built to be ephmeral (temp / short-lived)
+--> CI/CD Continous Integration / Continous Delivery / Deployment
+
+
+Base Image
+---> child images
+
+
+Community Developer
+--> Virus / Hack / 
+    bugs / unknown packages
+
+Run podman 
+- using root account
+  : all privileges
+  
+- using non-root account / root-less 
+  : limited privileges 
+    --> network limited 
+    --> storage 
+
+podman inspect 
+--> locally downloaded image
+skopeo inspect
+--> local / remote (docker://)
+
+podman run --name web1 -d docker.io/library/httpd
+-d detached / background 
+- download image if not available locally
+- /etc/containers/registries.conf
+  -- sequence
+podman run ubuntu
+
+user1 --> host (8080) -- port forward --> myweb1 (80)
+user2 --> host (8181) -- port forward --> myweb2  (80)
+
+- Naming resolution services
+-> /etc/hosts / DNS (2) / NIS  / NIS+ / LDAP (3)
+- ping servera / tracert /browse 
+
+/etc/hosts (1)
+- mapping IP to host
+192.168.0.100 servera
+192.168.0.101 serverb.example.com
+
+/etc/nsswitch.conf 
+--> determine the sequence
+    1 > 2 > 3
+
+DNS 
+- resolved FQDN into IP 
+
+/etc/resolv.conf
+-> where DNS server IP / hostname
+nameserver 192.168.0.201
+nameserver 8.8.4.4
+domain example.com
+search example.com jason.com trainocate.com
+
+
+container
+- ephemeral
+- container storage 
+
+ansible / orchestration / declaractive
+- idempotent
+
+
+podman rmi
+- remove image
+podman stop 
+podman rm
+- remove stopped processes
+
+
+podman run -p x:y
+x what ur current host will listen to
+y what the container are configured to listen to
+  find out from docker / redhat document
+  httpd - 80
+  mysql - 3306
+
+- if rootless, CANNOT run and forward using x=80
+
+podman stop --> podman rm
+or
+podman rm -f 
+
+podman rmi -f
+--> podman rm -f --> podman rmi 
+
+mkdir /dir
+chown ; chmod / setfacl
+semanage fcontext -at container_file_t "/dir(/.*?)"
+restorecon -Rv /dir
+
+podman -v "/dir:/var/lib/mysql:Z" mysql
+
+
+shutdown host --> boot up host
+--> shutdown all containers --> boot ??
+    --> podman start 
+    --> do not podman run 
+
+systemctl 
+- if user execute will get error
+  then linger
+
+Ansible 
+- open source
+- acquired RH
+- modules built based python
+- agentless orchestration utility / framework
+  - install/patch OS (windows / Linux)
+  - configuration (partition / formatting / package)
+  - network devices (cisco switch/router)
+         ssh 
+- master node
+  --> ansible package
+  --> python runtime
+  --> passwordless ssh login
+- playbook - idempotent tasks
+   go into servera,serverb,serverZ 
+   --> create user ALI --> install httpd
+   --> systemctl start/enable httpd --> configure FW
+   --> selinux
+ansible-playbook
+ansible-...
+
+Ansible tower
+- Web UI
+- RBAC / security / project 
+- license 
+RH254
+vs
+- script
+  --> if check user ALI already
+  --> parallel over CPU
+  
+
+
+
+
+
+
 
 
 
