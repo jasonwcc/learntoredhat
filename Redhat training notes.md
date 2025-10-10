@@ -1,318 +1,228 @@
-cmd subcommand -paramter(s) argument
-ls
-cd
-netstat
-nmcli <tab>
-man nmcli
+Primary group
+- user must have one
+- used to own file/directory/process/print job
+- assign permissions
+
+Secondary/Supplementary group
+- user can belong to none or upto 15 groups
+- switch primary
+- assign permissions
+
+DEMO
+- groupadd/groupmod/groupdel
+- useradd -g user / userdel / usermod / passwd
+- su - user
+- chgrp : permanently change group ownership of file/directory
+- newgrp: temporarily switch primary group 
 
 
-click console on workstation
-student / student
-root / redhat
+- chown : change user ownership of file/directory
+        : only root can execute
 
+setfacl
 
-1. lab finish <script>
-   lab start <script>
-2. on rol lab interface
-   - reset / shutdown / start
-   - stop all VMs/ re-start all vMs
-3. Delete / re-create the whole lab
+login user
 
-unix/linux
-- vi
+su 	# incompletely login as root
+su -	# completely login as root
+password root:
 
-- vim
+sudo shutdown 
+password user:
 
-i I
-o O
-a A
-x
-dd
-dw
-cw
-
-yy
-2y 
-p P
-
-:w!
-:q
-:wq!
-:q!
-ZZ
-:100,105 move
-:20,40 copy
-:1,4 delete
-:s
-{
-}
-u undo last action
-U undo all action on that line
-:e! -- undo all changes
-.  redo / repeat last action
-
-/text
-?text
-n N
-
-
-global substitution
-
-:%s/old-text/new-text
-:%s/old-text/new-text/g
-
-YAML
-
-set ts=2 sts expandtab
-set list
-set number
-set nonu
-
-rsh/ telnet (clear)
-
-
-ssh
-- disable password-based authentication
-- enable key-based
-  --> password-less
-
-username / password
-ssh 
-- private (passphrase)
 
 root
-
-your account (username)
-- remote db server (admin)
+student add to wheel
 
 
-rsa
-dsa
-ecdsa
+%wheel	ALL=(ALL:ALL)	ALL
+%wheel	r10s1.example.com=(operator:groupname) 	command
 
-IBM Control / Insights
+user1	sudo	assumed as operator
 
-Netapp Insights
-- netapp
-- cisco
-- ibm
-
-
+%games ALL=(ALL) /bin/id
+groupadd games
+useradd -G games user4
+login as user4
+$ sudo /bin/id
 
 
-RabbitMQ
-- messaging platform
+groupadd
+group
 
 
 
-disk-based
-network-based (NFS / CIFS)
-pseudo (memory-based
-
-Redhat
-- during installation
- PCI-DSS 
-\
-
-UEFI
-df -k
-/
-/var
-/home
-
-EFI
-
-/boot GRUB
 
 
-characters/raw/sectors
-- 512b / unit
-
-block
-- 4k / unit
-
-/var/www/html
-
-partition --> mkfs (ext2-4,xfs).
-
-soft/symbolic link
-- shortcut link / pointer
-- point using file path
-- original file and the link can be in same/different file system
-- ln -s <absolute-oath to target> link-name
-- target can be file/directory
-vs
-hard link
-- backup link
-- point using inode
-- original file and the link must be in 
-same file system
-- ln <absolute-oath to target> link-name
-- only file
 
 
-{}
-[]
-*
-~
+Delete user only : userdel username
+Delete user and its home directory respectively : userdel -r username
 
-`` ~
-''
 
-Redhat cloud (private)
-- insights
-- openshift
-- ansible (AAP)
+usermod -aG
+groupmod -aU
+
+passwd jason
+abc
+passwd peter
+abc
+
+1-jan-1970
+8-oct-2025
+
+20xxx
+
+usermod -e
+chage -E
+
+service/process/application directly
+
+
+
+
+file - compulsory r
+dir - comp. x
+
+Permission is assign user/group to file/dir
+SELinux is assign process to file/dir
+
+
+
+
+
+
+
+
+maindir -rwxr-xr-x	--> rwxr-xr-w
+  subdir rw-rw-rw-  	--> rwxrwxrwx
+    fileA  rw-r--r--	--> rw-r---r--
+    subsubdir rwxr-xr-x	--> rwxr-xr-x
+      fileB rwxr-xr-x	--> rwxr-xr-x
+
+
+chmod -R +X maindir/*
+
+chmod 1644 file
+
+r	w	x
+4	2	1	
+/	x	/	5
+/	/	x	6
+/	/	/	7
+x	x	x	0
+x	/	/	3
+
+
+chmod 4644 = set user ID (suid) = chmod u+s
+- assign to an executable binary file
+- show process ownership of the person creates the binary\
+- /public/pgmA
+
+chmod 2644 = set group ID (sgid) = chmod g+s
+
+chmod 1644 = set sticky bit  = chmod +t
+
+
+
+Linux/unix kernel
+
+			file 		dir
+original-perm		(666)rw-rw-rw-	(777) rwxrwxrwx
+umask 	substract	(033)----wx-wx	(033) ----wx-wx
+=			 644 rw-r--r--   755  rwxr--r--
+
+
+
+
 
 rpm
-- local package management
-- display/check/verify
+- manage packages/software locally
+
+dnf
+- manage packages/software from repository
+- resolve dependencies
+
+Repository
+
+
+a.b.c.d
+V R M F
+
+
+rpm -ivh bash-5.2
+does not 	--> install
+installed (5.1) 		--> upgrade/update
+- binary			--> binary/libra/doc/5.2	
+- library
+- doc
+- configuration(change)
+- kernel
+
 yum
-- configure repository
-dnf 
-- configure repository
-- better/improvised caching
+
+dnf
 
 
-Air gap
-
-
-kernel-5.14
--- /boot/
-kernel-5.15
--- /boot/
-
-redhat v6
-# yum group info
-# yum group list
-
-
-redhatv7
-
-# yum group info
-# yum groupinfo
-# yum group list
-# yum grouplist
-
-
-BaseOSv1 --> v2
-kernel
-vi
-binaries
-
-Developmentv1 X-->v2
-java
-python
-
-CentOS -> alma / rocky
-remove baseos
-keep appstream
-
-ini
-[section]
-
-
-wget http://lab.domain19.example.com/redhat/aaa.gpg
-
-1.8" 2.5" 3.5" 
-HDD (spinder, platters)
-- big capacity
-- price lowest
-SSD (flash-based)
-- latency / speed
-- 
-NVMe-SSD
-
-lsblk
-
-block(4k) - fileA (5k)
-block(4k) - fileB (1k)
-
-fsck-level	ufsdump-level (backup)
-
-
-CPU (6GHz) -- RAM DDR5 (5GHz)
-NVME-SSD microsecond
-
-
-RAID vs LVM
-- 0 = mirroring
-- 1 = concatenation
-- 2,3,4
-- 5 = stripe set with parity
-- 6 = stripe set with double parity
-- 10
-
-spanned
-
-linear LV
-
-stratisFS
-vdo
-
-/data1
-
-ext4
-lvresize
-resize2fs
-
-xfs
-lvresize
-xfs_growfs
+BaseOS-7.1			-> 7.2
+- kernel 7.2
+- FS
+- vi
+AppStream
+- java-7.1
+- python-7.1
 
 
 
-compression
-- utilize idle cpu cycles
-- big file 100m --algorithm-->20m
-- compressive-friendly:
-  database 80%-85% , virtualization 70-75%, oil & gas
-- not compressive
-  media (jpg, gif, mp4, mp3, mkv)
-vs
-deduplication
-- utilize RAM to create the hashed table
-- delete duplicate data / file
-
-Netapp
- 
-
-Hard disk (1T) 
-==> sales volume (500G) <-- 
-==> hr volume (500g)
-==> finance volume (500g)
-
-Rootful Container
-login as root
-podman run --name web1 -p 80:80 -d httpd
-- full access to networking (IP/dns/routing table/gateway)
-- when the VM reboots, container restart
-- systemctl enable/start/stop/disable
-
-Rootless Container
-login as non-root (rootless)
-podman run --name web1 -p 8080:80 -d httpd
-- limited
-- when the VM reboots, container stop
-ephmeral
-- container ephemeral storage
-- container can automatically if following:
-  1. configure the container to start with   
-     systemd
-     - container start when user ssh / 
-       graphical (login)
-     podman generate systemd <container name>
-     or
-     podman generate systemd --new <container name>
-
-  2. enable linger
-     - when the VM reboots, container 
-       restart
-- systemctl --user enable/start/stop/disable
+b lock (4k/8k)	              : ls / touch / cd
+c haracter/raw/sector (512b) : OS/Kernel access thru 
 
 
-useradd -d -u -g ali
-- rootless
+Mount manually
+# mount
+
+Mount automatically during boot time
+# vi /etc/fstab
+
+Mount on demand
+# cd /mnt
+# cd ..
+learn in RH134
+
+lsblk --fs
+- copy code to the partition
+mount UUID="paste UUID from above cmd" /database
+
+ls
+locate
+- built index file (mlocate database)
+
+find "location" "-criteria"
+-name
+-uid
+-perm
+-type
+-mtime
+-link
+-inum
+..
+...
+
+
+find / -perm /222
+fileA 223
+fileB 334
+fileC 111
+fileD 331
+
+modify / create / access
+
+-mmin -5
+-cmin -5
+-amin
+-ctime
+-atime
+--mtime
 
 
 
@@ -323,146 +233,185 @@ useradd -d -u -g ali
 
 
 
+ - C1 (102) 	--> zombie
+   - GC (103)
+ - C2 (104)
+
+kill -15 101	: gracefully ask the whole process family
+
+kill -9 104	: forcibly kill the whole process family
 
 
-nmcli con show
-nmcli con add
+ps -aux
+ps aux
+
+Process control
+- system wide
+- ps -ef | top
+
+Job control
+- session based
+- job
+
+ctrl+c --> INT
+ctrl+\ --> QUIT
+cltr+z --> TSTP
+
+kill -1 / kill -HUP / kill -SIGHUP
+
+
+
+
+
+
+cpu 
+- physical 10xprocessor (6.2 GHz)
+- logical processor (thread)
+
+If u are using Intel/AMD cpu
+- 10xcore = 20 threads
+
+If u are using IBM Power/Oracle Sparc cpu
+- 10core = 80 threads
+
+Thread benefiacial
+
+
+initd
+- systemd
+- service start/stop
+
+
+service - individual process/application
+target - group of services / milestone
+
+systemctl start sshd
+systemctl enable sshd
+= systemctl enable --now sshd
+
+fexx - link-local, cant connect outside of subnet 169.254.x.x
+fc/fd - unique-local, can't connect into internet
+2xxx - global/public ip
+ff   - multicast   224.x.x.x - 239.x.x.x
+::1   - localhost 127.0.0.1
+::    - unknown 0.0.0.0
+
+0.0.0.0 - 255.255.255.255  
+0.0.0.1 - 0.0.0.200
+
+
+
+
+
+
+PC1 : 192.168.0.1 
+      255.255.0.0
+PC2 : 192.168.1.6 
+      255.255.0.0
+Are they in same subnet? Y/N
+
+
+
+255.255.255.0  /24
+8n.8n.8n.8c    = 24
+255.255.0.0    /16
+255.240.0.0    /14
+
+
+1111 1111.1110 1000
+
+128 1000 0000
+192 1100 0000
+224 1110 0000
+240 1111
+248 1111 1
+252 1111 11
+254 1111 111
+255 1111 1111
+0
+1000 0000.0000 0000.0000 0000.000000
+
+MAC
+
+
+
+
+192.168.100.101/27
+
+subnetmask : 255.255.255.224
+
+
+
+decimal 10 100 1000  1104
+
+binary
+abcd
+1011 
+
+octal
+
+hexadecimal
+0-9,a-f
+IEEE
+00:0c:29:e9:5b:be
+1st convert ipv6 into binary
+0000 0000:0000 1100: 
+2nd toggle bit number 7th
+0000 0010:0000 1100: 
+02:0c:29:e9:5b:be
+3rd insert ff:fe in the middle
+020c:29ff:fee9:5bbe
+4th insert fe80::
+fe80::20c:29ff:fee9:5bbe
+
+
+ifconfig (deprecated)
+ip address
+ip link
+netstat
+nmcli - configure network permanently
+
+
+nmcli con add ... . ....
 nmcli con mod
 nmcli con up
 
 
-wget http:/<ul>/gpg...
+SSH
+- use HOST keys (pub/pri)
+- use USER password (default)
+- use USER keys (pub/pri)
 
-configure repo
-vi /etc/yum.repos.d/exam-objective-base.repo
-[baseos]
-name="description"
-baseurl=http://....
-enabled=1
-gpgcheck=0
-gpgkey=...
+1. Must login using username/password
+2. After generate, copy the public key to authorized_keys
+  - can login without passwd
+  - can login using user/passwd
+3. why Passphrase? prompt in the event private key being used.
+  enter passphrase
+4. Login without password + passphrase
+   start a terminal
+   configure/start ssh agent
+   add private-key + passphrase to the agent
 
-vi /etc/yum.repos.d/exam-objective-appstream.repo
-[baseos]
-name="description"
-baseurl=http://....
-enabled=1
-gpgcheck=0
-gpgkey=...
+/etc/ssh/sshd_config
+PermitRootLogin prohibit-password : root must login using key
+PermitRootLogin yes : root can ssh login using passwd/key
+PermitRootLogin no  : root cannot ssh at all 
 
-dnf repolist
-dnf list
-dnf install -y httpd mariadb mysql
+PasswordAuthentication: yes	: all user including root can login using passwd
+PasswordAuthentication: no	: must login u
 
-firewall-cmd --permanent --add-service={http,mysql}
-firewall-cmd --permanent --add-port=8080/tcp
-firewall-cmd reload
-
-semanage -l
-semanage fcontext -at
-semanage port -at 
-
-systemctl enable --now httpd
-systemctl enable --now mariadbd
-
-rpm -q
-
-useradd -g -G ali
-usermod
-userdel
-groupadd
-groupdel 
-groupmod
-passwd
-
-su - ali
-# crontab -e
-* * * * * script/cmd
-
-dnf -y install crond
-systemctl enable crond  --now
-
-mkdir
-
-dnf -y install chrony
-vi /etc/chronyd.conf
-under pool line
-server <hostname/ip>
-systemctl enable chronyd --noew
+rh124
+rh134
+ex200 - 
 
 
-dnf -y install autofs
-vi /etc/auto.master
-/rhome   auto.home
-vi /etc/auto.home
-ali   utility.servera.example.com:/rhome/ali
-abu   utility.servera.example.com:/rhome/abu
-#*     utility.servera.example.com:/rhome/&
+training + exam
+- ask salesperson/am
+- DHL contact casey
 
-systemctl enable autofs --now
-ls -ld /dir/findfile
-mkdir /dir/findfile
-find / -user abu --exec cp {} /dir/findfile \;
-
-grep
-tar 
-
-podman run --name test01 -v "/host-dir:/container-dir:Z"
-podman generate systemd --new --file
-mv test01.service ~/.config/container/systemd/user/
-systemctl --user enable/top/start test01
-loginctl enable-linger  
-
-chmod
-
-su - ali
-vi .bashrc
-umask 027
-
-
-reset password
-
-vgcreate
-lvcreate -l 60 | -L 60M
-
-vg PE=16M
-
-mkfs
-lvresize
-xfs_growfs
-
-parted
-fdisk
-
-mkswap
-
-create normal parition
-lsblk
-vi /etc/fstab
-UUID=
-/dev/vgname/lvname	/mnt 	xfs defaults 0 0
-UUID=<swap-uuid swap swap  defaults 0 0
-
-systemctl daemon-reload
-
-
-dnf -y install tuned
-tuneadm recommend
-==> balanced
-tuneadm profile balanced
-systemctl enable tuned --now
-
-
-
-Exam voucher
-- expiring
-
-Quintegral
-
-wired
-- usb
-
-
+exam voucher 
+- 1 yr expiry
 
 
 
