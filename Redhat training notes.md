@@ -57,3 +57,29 @@ noglob off ==> glob (enable * to be used as wildcard)
 noglob on  ==> no glob (disable * as wildard)
 
 
+at - run job(s) at specific date&time
+batch - run job(s) when system average load / busy
+cronjob - run job(s) repetitively
+anacron - run job(s) repetitively - reboot/hibernate
+systemd timer
+
+everyday 12pm backup; transfer to nfs server; package update
+mon 12pm
+tue 11:55pm down/crash
+tue 12:05
+wed
+
+
+
+
+
+
+root / redhat
+student / student
+
+
+
+
+
+
+
