@@ -27,12 +27,33 @@ var5=500
 variable="data"
 alias="commands"
 
+if a=100 and b=200
+[ ]
+[[ ]]
+( )
+
+case
+
+for i in a b c d
+do
+ cmd1
+ cmd2
+done
+
+while [while condition is still true ]
+do
+ cmd1
+ cmd2
+done
+
+until  [while condition is still false]
+do
+ cmd1
+ cmd2
+done
 
 
-
-
-
-
-
+noglob off ==> glob (enable * to be used as wildcard)
+noglob on  ==> no glob (disable * as wildard)
 
 
