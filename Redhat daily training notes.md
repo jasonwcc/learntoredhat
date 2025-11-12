@@ -119,6 +119,77 @@ scp -r /dirA remote:/tmp/
 rsync
 - copy only delta / changed files
 
+INTEL/AMD
+- hyperthread
+- core 
+
+ARM/IBM Power/Sparc
+10 core x 1/2/4/8 = 80 threads
+
+CPU -  socket
+1 x 20cores x 1/2 threads = 80 threads
+4x2cores
+
+Databases
+apache
+java-based
+
+GPU
+LLM
+Gaming
+AI/ML
+
+TensorFlow PU
+
+c - character/sector : 512b/s
+b - block : 8k/b
+
+RAM 1000 Mb
+OS   200 Mb
+PPT  100 Mb (50% data pages inactive)
+XLS  200 Mb (50% inactive)
+Word 300 Mb
+
+CPU vs Memory - GHz/1000 MT=10GT
+NVMe single digit microsecond
+
+SAP HANA
+REDIS 
+vs
+Oracle
+vs 
+MS SQL
+
+
+Create an LV named abc01 with a physical extend size of 16m. Make sure the abc01 has 60 physical extent. Mount the lv using xfs to /mnt/database persistently.
+vgs
+lsblk # look for available / unused disk(s)
+vgcreate -s 16 datavg /dev/sdc
+lvcreate -l 60 -n abc01 datavg
+mkfs.xfs /dev/datavg/abc01
+mkdir /mnt/database
+vi /etc/fstab
+/dev/datavg/abc01 /mnt/database xfs defaults 0 0
+mount /dev/datavg/abc01 /mnt/database
+
+
+vgs
+vgdisplay
+lvs
+lvdisplay
+pvs
+pvdisplay
+
+Increase FS size
+lvextend
+xfs_growfs
+
+1. fdisk
+2. mkfs = format
+3. mount / map to drive
+
+
+3:30pm
 
 
 
