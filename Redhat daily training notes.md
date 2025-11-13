@@ -191,6 +191,20 @@ xfs_growfs
 
 3:30pm
 
+AUTOFS
+user
+# cd /mnt/database
+autofs will automatically execute mount -t nfs 192.168.5.100:/database /mnt/database
+# cd /
+autofs will automatically unmount /mnt/database
+
+root can execute mount
+
+server
+/database o=rwx
+
+user --> nfs --> nobody
+cd /mnt/database
 
 
 
