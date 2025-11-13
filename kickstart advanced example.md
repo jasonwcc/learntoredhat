@@ -1,3 +1,4 @@
+```
 # Common setups
 keyboard us
 lang en_US.UTF-8
@@ -94,3 +95,5 @@ mkdir -p /test-dir/accounting
 setfacl -m u:jdoe:rwx /test-dir
 setfacl -Rm g:accounts:rX /test-dir
 %end
+
+```
